@@ -1,14 +1,22 @@
 import streamlit as st
 
-st.set_page_config(page_title="SmartVision", layout="wide")
+st.set_page_config(
+    page_title="SmartVision",
+    layout="wide",
+    page_icon="👁️"
+)
 
-st.title("👁️ SmartVision – Unified Computer Vision Platform")
-st.write("Image Classification + Object Detection using YOLO & CNNs")
+st.title("👁️ SmartVision")
+st.subheader("Unified Image Classification & Object Detection Platform")
 
 st.markdown("""
-### Features
-- Multi-class Image Classification
-- Real-time Object Detection
-- Model Comparison Dashboard
-- Cloud Deployed on Hugging Face
+SmartVision is an end-to-end computer vision system that performs:
+
+- **Multi-class Image Classification** using CNNs  
+- **Real-time Object Detection** using YOLOv8  
+- **Interactive Web Deployment** using Streamlit  
+
+Navigate using the sidebar to explore different features.
 """)
+
+st.info("📌 Use the sidebar to switch between pages.")
