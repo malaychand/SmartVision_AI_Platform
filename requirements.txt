@@ -1,0 +1,10 @@
+tensorflow
+torch
+ultralytics
+datasets
+pillow
+opencv-python
+streamlit
+matplotlib
+numpy
+tqdm
