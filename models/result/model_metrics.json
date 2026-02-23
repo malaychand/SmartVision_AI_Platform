@@ -1,0 +1,13 @@
+{
+    "test_accuracy": 0.8506666421890259,
+    "test_top5_accuracy": 0.9506666660308838,
+    "test_precision": 0.8844507932662964,
+    "test_recall": 0.8266666531562805,
+    "test_f1_score": 0.8545830430044052,
+    "avg_inference_time_ms": 84.08854961395264,
+    "throughput_images_per_sec": 181.03086874714114,
+    "total_params": 2593369,
+    "trainable_params": 2196313,
+    "model_size_mb": 2.7148666381835938,
+    "training_time_minutes": 82.84910110235214
+}

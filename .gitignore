@@ -1,5 +1,54 @@
-dataset/
-models/
-*.pt
-*.h5
+# ─────────────────────────────
+# Python
+# ─────────────────────────────
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+venv/
+env/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Streamlit
+.streamlit/
+
+# Model Weights (Very Important)
+*.h5
+*.keras
+*.pt
+*.pth
+*.onnx
+*.ckpt
+
+# Large Files
+*.zip
+*.tar
+*.gz
+
+# Data Folders (if large)
+data/
+dataset/
+datasets/
+
+# Hugging Face cache
+.cache/
