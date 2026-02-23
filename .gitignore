@@ -33,12 +33,7 @@ Thumbs.db
 .streamlit/
 
 # Model Weights (Very Important)
-*.h5
-*.keras
-*.pt
-*.pth
-*.onnx
-*.ckpt
+
 
 # Large Files
 *.zip

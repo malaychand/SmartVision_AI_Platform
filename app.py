@@ -1,10 +1,38 @@
 import streamlit as st
+import os
 
-# Display Generated Image
-st.image(
-    "models\smartvision.png",
-    use_container_width=True
+# ✅ MUST be the very first Streamlit call
+st.set_page_config(
+    page_title="SmartVision",
+    layout="wide",
+    page_icon="👁️"
 )
+
+# ─────────────────────────────────────────────────────────────
+# HERO WITH IMAGE
+# ─────────────────────────────────────────────────────────────
+
+st.markdown(
+    """
+    <div style="
+        background: linear-gradient(135deg, #0f172a, #111827);
+        border-radius: 18px;
+        padding: 30px 30px 40px 30px;
+        margin-bottom: 28px;
+        text-align: center;
+    ">
+    """,
+    unsafe_allow_html=True,
+)
+
+# ✅ FIX 1: Use forward slash (works on Linux/Mac/Windows)
+image_path = "models/smartvision.png"
+
+# ✅ FIX 2: Check if file exists before loading to give a clear error
+if os.path.exists(image_path):
+    st.image(image_path, use_container_width=True)
+else:
+    st.warning(f"⚠️ Image not found at `{image_path}`. Please ensure the file is committed to your repository.")
 
 st.markdown(
     """
@@ -88,6 +116,7 @@ for col, feats in zip([feat_col1, feat_col2], [features_left, features_right]):
             )
 
 st.divider()
+
 # =====================================================
 # QUICK NAVIGATION BUTTONS
 # =====================================================
@@ -110,6 +139,7 @@ with col2:
         st.switch_page("pages/yolo_performance.py")
 
 st.divider()
+
 # ─────────────────────────────────────────────────────────────────────────────
 # SECTION 3 — MODELS USED
 # ─────────────────────────────────────────────────────────────────────────────
@@ -166,14 +196,14 @@ with yolo_info:
     )
 
 st.markdown("<br>", unsafe_allow_html=True)
-# ── CNN Models ─────────────────────────────────────────────
 
+# ── CNN Models ─────────────────────────────────────────────
 st.markdown("#### 🧠 Image Classification — CNN Models")
 CNN_MODELS = [
     {"name": "EfficientNetB0", "icon": "🟨", "color": "#f39c12", "highlight": "Best Accuracy"},
-    {"name": "ResNet50", "icon": "🟥", "color": "#e74c3c", "highlight": "Best All-Rounder"},
-    {"name": "MobileNetV2", "icon": "🟩", "color": "#2ecc71", "highlight": "Fastest Inference"},
-    {"name": "VGG16", "icon": "🟦", "color": "#3498db", "highlight": "Reliable Baseline"},
+    {"name": "ResNet50",       "icon": "🟥", "color": "#e74c3c", "highlight": "Best All-Rounder"},
+    {"name": "MobileNetV2",    "icon": "🟩", "color": "#2ecc71", "highlight": "Fastest Inference"},
+    {"name": "VGG16",          "icon": "🟦", "color": "#3498db", "highlight": "Reliable Baseline"},
 ]
 
 for model in CNN_MODELS:
@@ -187,19 +217,10 @@ for model in CNN_MODELS:
             border-left:5px solid {model['color']};
         ">
             <span style="font-size:18px;">{model['icon']}</span>
-            <span style="
-                font-weight:700;
-                font-size:15px;
-                color:#000000;   /* 🔥 Model name in black */
-            ">
+            <span style="font-weight:700;font-size:15px;color:#000000;">
                 {model['name']}
             </span>
-            <span style="
-                font-size:11px;
-                margin-left:8px;
-                color:{model['color']};
-                font-weight:600;
-            ">
+            <span style="font-size:11px;margin-left:8px;color:{model['color']};font-weight:600;">
                 {model['highlight']}
             </span>
         </div>
@@ -260,50 +281,36 @@ with d2:
     }
 
     badges = " ".join(
-        f'<span style="display:inline-block;'
-        f'background:#f0f4ff;'
-        f'border:1px solid #c8d8f8;'
-        f'border-radius:20px;'
-        f'padding:6px 14px;'
-        f'font-size:16px;'   # 🔥 Increased size
-        f'margin:6px 4px;'
-        f'color:#000000;'
-        f'font-weight:600;">'  # Slightly bold
+        f'<span style="display:inline-block;background:#f0f4ff;border:1px solid #c8d8f8;'
+        f'border-radius:20px;padding:6px 14px;font-size:16px;margin:6px 4px;'
+        f'color:#000000;font-weight:600;">'
         f'{ICONS.get(c,"•")} {c}</span>'
         for c in CLASS_NAMES
     )
-
     st.markdown(f'<div style="line-height:2.6;">{badges}</div>', unsafe_allow_html=True)
 
 st.divider()
-# ─────────────────────────────────────────────────────────────
-# SECTION 5 — BUSINESS APPLICATIONS (Single Line Each)
-# ─────────────────────────────────────────────────────────────
 
+# ─────────────────────────────────────────────────────────────
+# SECTION 5 — BUSINESS APPLICATIONS
+# ─────────────────────────────────────────────────────────────
 st.markdown("### 🌍 Business Applications")
 
 APPS = [
     ("🏙️", "Smart Cities & Traffic Management",
      "Automated vehicle detection · Pedestrian safety monitoring · Parking detection · Traffic violation detection"),
-
     ("🛒", "Retail & E-Commerce",
      "Product recognition · Scan-free checkout · Customer behaviour analytics · Visual search"),
-
     ("🔒", "Security & Surveillance",
      "Intrusion detection · Unattended object alerts · Perimeter monitoring · Crowd density analysis"),
-
     ("🦁", "Wildlife Conservation",
      "Species identification · Habitat monitoring · Poaching prevention · Population studies"),
-
     ("🏥", "Healthcare",
      "PPE compliance verification · Equipment tracking · Patient fall detection · Hygiene monitoring"),
-
     ("🏠", "Smart Home & IoT",
      "Home automation · Security alerts · Pet activity tracking · Energy usage detection"),
-
     ("🌾", "Agriculture",
      "Livestock monitoring · Pest detection · Equipment tracking · Harvest readiness detection"),
-
     ("📦", "Logistics & Warehousing",
      "Package sorting · Inventory tracking · Quality control · Loading bay monitoring"),
 ]
@@ -311,20 +318,11 @@ APPS = [
 for icon, title, description in APPS:
     st.markdown(
         f"""
-        <div style="
-            border:1.5px solid #dee2e6;
-            border-radius:12px;
-            padding:14px 16px;
-            margin-bottom:12px;
-            background:#fafbfc;
-        ">
+        <div style="border:1.5px solid #dee2e6;border-radius:12px;padding:14px 16px;
+            margin-bottom:12px;background:#fafbfc;">
             <span style="font-size:20px;">{icon}</span>
-            <span style="font-size:15px;font-weight:700;color:#000;">
-                {title}:
-            </span>
-            <span style="font-size:13px;color:#555;">
-                {description}
-            </span>
+            <span style="font-size:15px;font-weight:700;color:#000;">{title}: </span>
+            <span style="font-size:13px;color:#555;">{description}</span>
         </div>
         """,
         unsafe_allow_html=True,
@@ -332,121 +330,55 @@ for icon, title, description in APPS:
 
 st.divider()
 
-
 # ─────────────────────────────────────────────────────────────
-# SECTION 6 — TECH STACK + RESULTS (Improved UI)
+# SECTION 6 — TECH STACK + RESULTS
 # ─────────────────────────────────────────────────────────────
-
 st.markdown("### 🛠️ Tech Stack & Project Info")
 
 tech_col, dev_col = st.columns([1, 1])
 
-# ── TECH STACK ─────────────────────────────────────────────
 with tech_col:
     TECH = [
-        ("🐍", "Python 3.10",              "Core programming language"),
-        ("🤖", "TensorFlow / Keras",        "CNN training & inference"),
-        ("⚡", "Ultralytics YOLOv8",        "Object detection & fine-tuning"),
-        ("👁️", "OpenCV",                   "Image processing & annotation"),
-        ("🌐", "Streamlit",                 "Interactive web app framework"),
-        ("🤗", "Hugging Face Spaces",       "Cloud deployment platform"),
-        ("📊", "Matplotlib / Seaborn",      "Visualisations"),
-        ("🔢", "NumPy / Pandas",            "Data processing"),
-        ("🧪", "Scikit-learn",              "Evaluation metrics"),
+        ("🐍", "Python 3.10",           "Core programming language"),
+        ("🤖", "TensorFlow / Keras",     "CNN training & inference"),
+        ("⚡", "Ultralytics YOLOv8",     "Object detection & fine-tuning"),
+        ("👁️", "OpenCV",                "Image processing & annotation"),
+        ("🌐", "Streamlit",              "Interactive web app framework"),
+        ("🤗", "Hugging Face Spaces",    "Cloud deployment platform"),
+        ("📊", "Matplotlib / Seaborn",   "Visualisations"),
+        ("🔢", "NumPy / Pandas",         "Data processing"),
+        ("🧪", "Scikit-learn",           "Evaluation metrics"),
     ]
-
     rows_html = "".join(
-        f'<div style="display:flex;align-items:center;gap:10px;'
-        f'padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);">'
+        f'<div style="display:flex;align-items:center;gap:10px;padding:10px 14px;'
+        f'border-bottom:1px solid rgba(255,255,255,0.05);">'
         f'<span style="font-size:18px;width:26px;text-align:center;">{icon}</span>'
         f'<span style="font-size:13px;font-weight:600;min-width:170px;color:#e5e7eb;">{name}</span>'
         f'<span style="font-size:12px;color:#9ca3af;">{desc}</span></div>'
         for icon, name, desc in TECH
     )
-
     st.markdown(
-        f'''
-        <div style="
-            border:1px solid rgba(255,255,255,0.08);
-            border-radius:14px;
-            overflow:hidden;
-            background:linear-gradient(145deg,#0f172a,#111827);
-            box-shadow:0 8px 24px rgba(0,0,0,0.4);
-        ">
-            <div style="
-                background:linear-gradient(90deg,#2563eb,#1d4ed8);
-                padding:12px 16px;">
-                <p style="color:#fff;font-weight:700;font-size:14px;margin:0;">
-                    🛠️ Tech Stack
-                </p>
+        f'''<div style="border:1px solid rgba(255,255,255,0.08);border-radius:14px;
+            overflow:hidden;background:linear-gradient(145deg,#0f172a,#111827);
+            box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+            <div style="background:linear-gradient(90deg,#2563eb,#1d4ed8);padding:12px 16px;">
+                <p style="color:#fff;font-weight:700;font-size:14px;margin:0;">🛠️ Tech Stack</p>
             </div>
             {rows_html}
-        </div>
-        ''',
+        </div>''',
         unsafe_allow_html=True,
     )
 
-
-# ── MODEL RESULTS ─────────────────────────────────────────────
 with dev_col:
-
     st.markdown("""
-    <div style="
-        border:1px solid rgba(255,255,255,0.08);
-        border-radius:14px;
-        padding:18px 20px;
-        background:linear-gradient(145deg,#0f172a,#111827);
-        box-shadow:0 8px 24px rgba(0,0,0,0.4);
-        color:#e5e7eb;
-        line-height:1.9;
-        font-size:14px;
-    ">
-
-    <p style="font-weight:700;font-size:16px;margin-bottom:12px;">
-        📊 Model Scope & Results
-    </p>
-
-    Image Classification (Transfer Learning)<br>
-    Object Detection (YOLOv8 Fine-tuning)<br>
-    Evaluation — Accuracy · mAP@0.5 · Precision · Recall · F1<br><br>
-
-    <span style="color:#22c55e;font-weight:600;">
-        CNN Result — 92% (EfficientNetB0) ✅
-    </span><br>
-
-    <span style="color:#22c55e;font-weight:600;">
-        YOLO Result — mAP@0.5 = 0.893 ✅
-    </span>
-
+    <div style="border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:18px 20px;
+        background:linear-gradient(145deg,#0f172a,#111827);box-shadow:0 8px 24px rgba(0,0,0,0.4);
+        color:#e5e7eb;line-height:1.9;font-size:14px;">
+        <p style="font-weight:700;font-size:16px;margin-bottom:12px;">📊 Model Scope & Results</p>
+        Image Classification (Transfer Learning)<br>
+        Object Detection (YOLOv8 Fine-tuning)<br>
+        Evaluation — Accuracy · mAP@0.5 · Precision · Recall · F1<br><br>
+        <span style="color:#22c55e;font-weight:600;">CNN Result — 92% (EfficientNetB0) ✅</span><br>
+        <span style="color:#22c55e;font-weight:600;">YOLO Result — mAP@0.5 = 0.893 ✅</span>
     </div>
     """, unsafe_allow_html=True)
-
-
-
-
-
-    import streamlit as st
-
-st.set_page_config(
-    page_title="SmartVision",
-    layout="wide",
-    page_icon="👁️"
-)
-
-# ─────────────────────────────────────────────────────────────
-# HERO WITH IMAGE
-# ─────────────────────────────────────────────────────────────
-
-st.markdown(
-    """
-    <div style="
-        background: linear-gradient(135deg, #0f172a, #111827);
-        border-radius: 18px;
-        padding: 30px 30px 40px 30px;
-        margin-bottom: 28px;
-        text-align: center;
-    ">
-    """,
-    unsafe_allow_html=True,
-)
-
