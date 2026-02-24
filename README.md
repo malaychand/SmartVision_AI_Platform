@@ -5,7 +5,9 @@ SmartVision is an end-to-end computer vision project that performs **multi-class
 
 ## 🚀 Live Demo
 
-[![Streamlit App](https://img.shields.io/badge/Streamlit-Live_App-red?logo=streamlit&logoColor=white)](https://smartvisionaiplatform-hktleegcellv2bfnfexwn9.streamlit.app/)
+[![Streamlit Cloud](https://img.shields.io/badge/Streamlit-Cloud_App-red?logo=streamlit&logoColor=white)](https://smartvisionaiplatform-hktleegcellv2bfnfexwn9.streamlit.app/)
+
+[![Hugging Face](https://img.shields.io/badge/HuggingFace-Space-yellow?logo=huggingface&logoColor=black)](https://huggingface.co/spaces/malaychand/smartvision-ai)
 
 ## 🔑 Features
 - 25-class image classification using CNNs (VGG16, ResNet50, MobileNetV2, EfficientNetB0)
@@ -13,3 +15,4 @@ SmartVision is an end-to-end computer vision project that performs **multi-class
 - Automated COCO dataset streaming and preprocessing
 - Streamlit web application
 - Deployment-ready for Hugging Face Spaces
+
